@@ -78,6 +78,16 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
   }
 }
 
+// Define different edge styles for chart connections
+const chartEdgeStyle = {
+  type: 'straight',
+  animated: false,
+  style: { 
+    strokeWidth: 1,
+    stroke: '#999'
+  }
+}
+
 const edgeStyles = {
   selected: {
     strokeWidth: 10,
@@ -146,11 +156,9 @@ export function FlowDashboard() {
     const isChartConnection = ['pieChart', 'lineChart', 'barChart'].includes(sourceNode?.type || '') || 
                              ['pieChart', 'lineChart', 'barChart'].includes(targetNode?.type || '')
 
-    const edgeType = isChartConnection ? 'straight' : 'smoothstep'
-    
     setEdges(edges => addEdge({
       ...params,
-      type: edgeType,
+      ...(isChartConnection ? chartEdgeStyle : defaultEdgeOptions)
     }, edges))
   }, [nodes, setEdges])
 

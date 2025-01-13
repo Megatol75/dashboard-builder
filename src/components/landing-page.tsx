@@ -6,7 +6,7 @@ export function LandingPage() {
     <div className="flex h-screen items-center justify-center bg-background p-4">
       <div className="max-w-4xl w-full space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">ShadUI Builder</h1>
+          <h1 className="text-4xl font-bold tracking-tight">Dashboard Builder</h1>
           <p className="text-xl text-muted-foreground">Choose your dashboard type</p>
         </div>
 
