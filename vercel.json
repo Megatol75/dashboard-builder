@@ -1,5 +1,6 @@
 {
     "rewrites": [
-      { "source": "/ShadUIBuilder/:path*", "destination": "/:path*" }
+      { "source": "/ShadUIBuilder/:path*", "destination": "/:path*" },
+      { "source": "/ShadUIBuilder", "destination": "/" }  
     ]
   }
