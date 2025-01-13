@@ -84,7 +84,8 @@ const chartEdgeStyle = {
   animated: false,
   style: { 
     strokeWidth: 1,
-    stroke: '#999'
+    stroke: '#999',
+    strokeDasharray: '4 4'
   }
 }
 
