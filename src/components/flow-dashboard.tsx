@@ -63,17 +63,19 @@ const nodeTypes = {
 }
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
-  animated: true,
+  animated: false,
   type: 'smoothstep',
   markerEnd: {
     type: MarkerType.ArrowClosed,
     width: 8,
     height: 8,
-    color: 'green'
+    color: '#999'
   },
   style: { 
-    strokeWidth: 10, 
-    stroke: 'green',
+    strokeWidth: 10,
+    strokeDasharray: '4 4', 
+    stroke: '#999',
+    filter: 'drop-shadow(2px -2px  #000000) drop-shadow(-2px 2px #000000) drop-shadow(2px 2px  #000000) drop-shadow(-2px -2px #000000)',
     transition: 'stroke 300ms ease'
   }
 }

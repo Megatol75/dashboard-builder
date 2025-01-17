@@ -7,7 +7,7 @@ import { FlowDashboard } from './components/flow-dashboard'
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="shadui-builder-theme">
-      <Router basename="/ShadUIBuilder">
+      <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/grid" element={<GridDashboard />} />

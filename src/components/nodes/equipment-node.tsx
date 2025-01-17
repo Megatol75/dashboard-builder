@@ -72,7 +72,8 @@ export function EquipmentNode({ data, selected }: NodeProps<EquipmentNodeData>) 
         style={{
           ...handleStyle,
           top: 'auto',
-          bottom: '-5px'
+          bottom: '70px',
+          //transform: 'translate(-50%, -50%)'
         }}
         id="b"
       />
