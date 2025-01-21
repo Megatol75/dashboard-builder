@@ -73,7 +73,6 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
   },
   style: { 
     strokeWidth: 10,
-    strokeDasharray: '4 4', 
     stroke: '#999',
     filter: 'drop-shadow(2px -2px  #000000) drop-shadow(-2px 2px #000000) drop-shadow(2px 2px  #000000) drop-shadow(-2px -2px #000000)',
     transition: 'stroke 300ms ease'
