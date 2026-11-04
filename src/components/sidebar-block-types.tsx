@@ -1,38 +1,45 @@
-import { Button } from './ui/button'
-import { BLOCK_TYPES } from '../types/blocks'
-import { BLOCK_CONSTRAINTS } from '../types/constraints'
+import { Button } from "./ui/button";
+import { BLOCK_TYPES } from "../types/blocks";
+import { BLOCK_CONSTRAINTS } from "../types/constraints";
 
 interface BlockTypesContentProps {
-  onAddBlock: (type: string) => void
-  onDragStart: (type: string) => void
+  onAddBlock: (type: string) => void;
+  onDragStart: (type: string) => void;
 }
 
-export function BlockTypesContent({ onAddBlock, onDragStart }: BlockTypesContentProps) {
-  const handleDragStart = (e: React.DragEvent<HTMLButtonElement>, blockType: string) => {
-    const constraints = BLOCK_CONSTRAINTS[blockType as keyof typeof BLOCK_CONSTRAINTS];
-    
+export function BlockTypesContent({
+  onAddBlock,
+  onDragStart,
+}: BlockTypesContentProps) {
+  const handleDragStart = (
+    e: React.DragEvent<HTMLButtonElement>,
+    blockType: string,
+  ) => {
+    const constraints =
+      BLOCK_CONSTRAINTS[blockType as keyof typeof BLOCK_CONSTRAINTS];
+
     // Store block type for drop handling
-    e.dataTransfer.setData('text/plain', blockType);
-    
+    e.dataTransfer.setData("text/plain", blockType);
+
     // Calculate grid cell size including margin
-    const gridContainer = document.querySelector('.layout-container');
+    const gridContainer = document.querySelector(".layout-container");
     const columns = 12;
     const margin = 16;
     const containerPadding = 16;
-    
+
     // Get actual grid width from DOM
-    const totalGridWidth = gridContainer ? 
-      gridContainer.clientWidth - (containerPadding * 2) : // Subtract container padding
-      1200; // Fallback width
-    
-    const cellWidth = (totalGridWidth - (margin * (columns - 1))) / columns; // Account for margins between cells
+    const totalGridWidth = gridContainer
+      ? gridContainer.clientWidth - containerPadding * 2 // Subtract container padding
+      : 1200; // Fallback width
+
+    const cellWidth = (totalGridWidth - margin * (columns - 1)) / columns; // Account for margins between cells
     const cellHeight = 100 + margin; // 100px cell + margin
-    
+
     // Create a drag preview element
-    const preview = document.createElement('div');
-    preview.className = 'drag-preview';
-    preview.style.width = `${(constraints.defaultW * cellWidth) + (margin * (constraints.defaultW - 1))}px`;
-    preview.style.height = `${(constraints.defaultH * cellHeight) - margin}px`;
+    const preview = document.createElement("div");
+    preview.className = "drag-preview";
+    preview.style.width = `${constraints.defaultW * cellWidth + margin * (constraints.defaultW - 1)}px`;
+    preview.style.height = `${constraints.defaultH * cellHeight - margin}px`;
     document.body.appendChild(preview);
 
     // Hide the default drag image
@@ -43,18 +50,18 @@ export function BlockTypesContent({ onAddBlock, onDragStart }: BlockTypesContent
       if (e.clientX === 0 && e.clientY === 0) return; // Ignore invalid positions
       preview.style.left = `${e.clientX}px`;
       preview.style.top = `${e.clientY}px`;
-      preview.style.display = 'block';
+      preview.style.display = "block";
     };
 
-    // Clean up on drag end
-    const cleanup = () => {
-      preview.remove();
-      document.removeEventListener('drag', handleDrag);
-      e.currentTarget.removeEventListener('dragend', cleanup);
-    };
-
-    document.addEventListener('drag', handleDrag);
-    e.currentTarget.addEventListener('dragend', cleanup);
+    document.addEventListener("drag", handleDrag);
+    e.currentTarget.addEventListener(
+      "dragend",
+      function () {
+        preview.remove();
+        document.removeEventListener("drag", handleDrag);
+      },
+      { once: true },
+    );
 
     // Notify parent of drag start
     onDragStart(blockType);
@@ -77,4 +84,4 @@ export function BlockTypesContent({ onAddBlock, onDragStart }: BlockTypesContent
       ))}
     </div>
   );
-} 
+}
