@@ -1,22 +1,19 @@
 import { Button } from "./ui/button";
-import { BLOCK_TYPES } from "../types/blocks";
-import { BLOCK_CONSTRAINTS } from "../types/constraints";
+import { WIDGET_TYPES } from "../types/widgets";
+import { WIDGET_CONSTRAINTS } from "../types/constraints";
 
-interface BlockTypesContentProps {
+interface WidgetToolBarProps {
   onAddBlock: (type: string) => void;
   onDragStart: (type: string) => void;
 }
 
-export function BlockTypesContent({
-  onAddBlock,
-  onDragStart,
-}: BlockTypesContentProps) {
+export function WidgetToolBar({ onAddBlock, onDragStart }: WidgetToolBarProps) {
   const handleDragStart = (
     e: React.DragEvent<HTMLButtonElement>,
     blockType: string,
   ) => {
     const constraints =
-      BLOCK_CONSTRAINTS[blockType as keyof typeof BLOCK_CONSTRAINTS];
+      WIDGET_CONSTRAINTS[blockType as keyof typeof WIDGET_CONSTRAINTS];
 
     // Store block type for drop handling
     e.dataTransfer.setData("text/plain", blockType);
@@ -69,17 +66,17 @@ export function BlockTypesContent({
 
   return (
     <div className="space-y-2">
-      {BLOCK_TYPES.map((blockType) => (
+      {WIDGET_TYPES.map((widgetType) => (
         <Button
-          key={blockType.id}
+          key={widgetType.id}
           variant="outline"
           className="w-full justify-start gap-2"
-          onClick={() => onAddBlock(blockType.id)}
+          onClick={() => onAddBlock(widgetType.id)}
           draggable
-          onDragStart={(e) => handleDragStart(e, blockType.id)}
+          onDragStart={(e) => handleDragStart(e, widgetType.id)}
         >
-          <blockType.icon className="h-4 w-4" />
-          {blockType.label}
+          <widgetType.icon className="h-4 w-4" />
+          {widgetType.label}
         </Button>
       ))}
     </div>
