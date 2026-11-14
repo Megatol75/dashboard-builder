@@ -1,4 +1,4 @@
-import { Layout } from "react-grid-layout";
+import { LayoutItem } from "react-grid-layout/legacy";
 import { TextBlock } from "../components/ui/text-block";
 import {
   PieChart,
@@ -14,14 +14,10 @@ import {
   Table as TableIcon,
 } from "lucide-react";
 
-export interface WidgetLayoutItem extends Layout {
+export interface WidgetLayoutItem extends LayoutItem {
   type: string;
   title?: string;
   data?: string;
-  minH?: number;
-  minW?: number;
-  maxW?: number;
-  isDragging?: boolean;
 }
 
 export const WIDGET_TYPES = [

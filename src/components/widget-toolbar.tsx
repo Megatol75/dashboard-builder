@@ -3,11 +3,11 @@ import { WIDGET_TYPES } from "../types/widgets";
 import { WIDGET_CONSTRAINTS } from "../types/constraints";
 
 interface WidgetToolBarProps {
-  onAddBlock: (type: string) => void;
+  onAddWidget: (type: string) => void;
   onDragStart: (type: string) => void;
 }
 
-export function WidgetToolBar({ onAddBlock, onDragStart }: WidgetToolBarProps) {
+export function WidgetToolBar({ onAddWidget, onDragStart }: WidgetToolBarProps) {
   const handleDragStart = (
     e: React.DragEvent<HTMLButtonElement>,
     blockType: string,
@@ -71,7 +71,7 @@ export function WidgetToolBar({ onAddBlock, onDragStart }: WidgetToolBarProps) {
           key={widgetType.id}
           variant="outline"
           className="w-full justify-start gap-2"
-          onClick={() => onAddBlock(widgetType.id)}
+          onClick={() => onAddWidget(widgetType.id)}
           draggable
           onDragStart={(e) => handleDragStart(e, widgetType.id)}
         >
